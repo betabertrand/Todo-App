@@ -303,6 +303,7 @@ div.hovertext button {
 div.hovertext button.update{
   
 
+
 }
 
 div.hovertext button.delete{
@@ -330,6 +331,17 @@ div.hovertext button.delete{
 
   outline-width: 2px;
 
-  
+
+
+}
+
+
+.nodiv {
+
+  border: none !important;
+
+  width: 420px;
+  height: 160px;
+  margin-left: 270px;
 
 }
