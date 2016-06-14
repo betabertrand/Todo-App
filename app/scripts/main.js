@@ -11,7 +11,7 @@
         var finish = '</p></div><div class="col-xs-2"> <button type="button" id="buttonexit" class="update buttonsize no-outline"><i class="material-icons">clear</i></button></div></div></div><div class="row"></div></div></div>';
 
    
-      var entityMap = {
+      var entityMap = {   //keeping texts in strings
       "&": "&amp;",
       "<": "&lt;",
       ">": "&gt;",
@@ -30,7 +30,7 @@
 	
 
 
-       	$('input').keypress(function(e) {
+       	$('input').keypress(function(e) {   //adds todos
 
        	var textinput = $('#todoinput').val();
        	var textlength = $('#todoinput').val().length;
@@ -38,7 +38,7 @@
 
      
       
-        if(e.which == 13) {
+        if(e.which == 13) {     
 
         	if ($.trim(text).length >= 3) {
 
@@ -56,13 +56,46 @@
     	});
 
         $('#itemtodo').on('click','#buttonexit', function(e){ //user click on remove text
-        $(this).parents('div').eq(3).remove();
-      })
+          $(this).parents('div').eq(3).remove();
+        })
     
   
-        $('body').on('click', '.buttonstyle', function() {
-        $(this).toggleClass("fa-circle-thin fa-check-circle-o");
+        $('body').on('click', '.buttonstyle', function() {   //checks boxes
+          $(this).toggleClass("fa-circle-thin fa-check-circle-o");
         });
+
+
+        $("body").on("click", "#active", function() {        //hides checked boxes
+          $(".fa-check-circle-o").parent().parent().parent().hide();      
+        });
+
+        $("body").on("click", "#active", function() {        //shows unchecked boxes
+          $(".fa-circle-thin").parent().parent().parent().show();      
+        });
+
+        $("body").on("click", "#completed", function() {        //hides uncchecked boxes
+          $(".fa-circle-thin").parent().parent().parent().hide();      
+        });
+
+        $("body").on("click", "#completed", function() {        //shows checked boxes
+          $(".fa-check-circle-o").parent().parent().parent().show();      
+        });
+
+        $("body").on("click", "#all", function() {        //shows all boxes
+          $(".fa-check-circle-o").parent().parent().parent().show();
+        });
+
+        $("body").on("click", "#all", function() {        //shows all boxes
+          $(".fa-circle-thin").parent().parent().parent().show();
+        });
+
+
+
+
+       
+
+
+
 
 
      });
