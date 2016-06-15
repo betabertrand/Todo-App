@@ -6,14 +6,16 @@
 
 
 
-        var start = '<div class="boxbox2 center outlinecolor"><div class="row" id="itemtodo2"><div class="col-xs-2"><button type="button" id="buttoncircle" class="buttonsize boxcolor no-outline buttons"><i class="fa fa-circle-thin circle buttonstyle"></i></button></div><div class="col-xs-10 hovertext boxcolor box-style3"><div class="col-xs-10" id="todotext"><p class="left text2 textfont todude" id="todolist">';
-
+        var start = '<div class="boxbox2 center outlinecolor outdiv"><div class="row" id="itemtodo2"><div class="col-xs-2"><button type="button" id="buttoncircle" class="buttonsize boxcolor no-outline buttons"><i class="fa fa-circle-thin circle buttonstyle"></i></button></div><div class="col-xs-10 hovertext boxcolor box-style3"><div class="col-xs-10" id="todotext"><p class="left text2 textfont todude" id="todolist">';
+        //for adding todos
         var finish = '</p></div><div class="col-xs-2"> <button type="button" id="buttonexit" class="update buttonsize no-outline"><i class="material-icons">clear</i></button></div></div></div><div class="row"></div></div></div>';
 
-        var itemsleftstart = '<p class="text3 textfont itemsleft">';
+        var itemsleftstart = '<p class="text3 textfont itemsleft">';  //for items counter
         var itemsleftfinish = ' items left</p>'
 
         var x = 0;
+
+        var clearcompleted = '<i class="material-icons">clear</i>' //for clearing all
 
 
 
@@ -39,7 +41,7 @@
        	$('input').keypress(function(e) {   //adds todos
 
        	var textinput = $('#todoinput').val();
-       	var textlength = $('#todoinput').val().length;
+       	var textlength = $('#todoinput').val().length; //not used
         var text = escapeHtml(textinput);
 
      
@@ -65,6 +67,11 @@
     	});
         
 
+        //if (x > 0 ) {   //for clearing all
+
+          //$("#completed").append(clearcompleted);
+        //}
+
 
 
         $('#itemtodo').on('click','#buttonexit', function(e){ //user click on remove text
@@ -77,27 +84,47 @@
         $('body').on('click', '.buttonstyle', function() {   //checks boxes
           $(this).toggleClass("fa-circle-thin fa-check-circle-o");
 
-        
-          //x--;
-          //$(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
-          
-          //$(".todude").toggleClass("crossword");
+          if ($(".buttonstyle").is(".fa-check-circle-o")) {       
+            x--;
+            $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+          };
+
+          if ($(".buttonstyle").is(".fa-circle-thin")) {       
+            x++;
+            $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+          };
+
+          $(this).parent().parent().next().children().children().toggleClass("crossword"); //crosses out single word
          
         });
 
-        $('body').on('click', '#downbutton', function() {   //checks all boxes. needs if to work
-
-          //if ((".buttonstyle").hasClass(".fa-circle-thin")) {
-
-            $(".buttonstyle").toggleClass("fa-check-circle-o fa-circle-thin");
-          //}
-
-          
 
      
 
-          //$(".todude").toggleClass("crossword");
-         
+
+
+
+        $('body').on('click', '#downbutton', function() {     //checks all boxes.
+
+          if ($(".buttonstyle").is(".fa-circle-thin")) {
+
+            $(".fa-circle-thin").toggleClass("fa-circle-thin fa-check-circle-o"); 
+             if ($(".todude").is(".todude")) {
+
+                  $(".todude").addClass("crossword");
+                } 
+          }
+
+          else if ($(".buttonstyle").is(".fa-check-circle-o")) {
+
+                $(".fa-check-circle-o").toggleClass("fa-circle-thin fa-check-circle-o");  
+
+                if ($(".todude").is(".crossword")) {
+
+                  $(".todude").removeClass("crossword");
+                }  
+          }
+          //$(".todude").toggleClass("crossword");     add class didnt work well
         });
 
 
