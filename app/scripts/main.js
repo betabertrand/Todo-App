@@ -76,7 +76,12 @@
 
         $('#itemtodo').on('click','#buttonexit', function(e){ //user click on remove text
           $(this).parents('div').eq(3).remove();
-          x--;
+
+
+          if ($(this).parent().parent().prev().children().children().is(".fa-circle-thin")) {       
+            x--;  
+          }
+
           $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
         })
     
@@ -84,15 +89,18 @@
         $('body').on('click', '.buttonstyle', function() {   //checks boxes
           $(this).toggleClass("fa-circle-thin fa-check-circle-o");
 
-          if ($(".buttonstyle").is(".fa-check-circle-o")) {       
+          
+          if ($(this).is(".fa-circle-thin")) {       
+            x++;  
+          }
+
+          else if($(this).is(".fa-check-circle-o")) {       
             x--;
-            $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
           };
 
-          if ($(".buttonstyle").is(".fa-circle-thin")) {       
-            x++;
-            $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
-          };
+
+          $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+
 
           $(this).parent().parent().next().children().children().toggleClass("crossword"); //crosses out single word
          
@@ -102,28 +110,36 @@
      
 
 
-
-
         $('body').on('click', '#downbutton', function() {     //checks all boxes.
 
           if ($(".buttonstyle").is(".fa-circle-thin")) {
 
-            $(".fa-circle-thin").toggleClass("fa-circle-thin fa-check-circle-o"); 
-             if ($(".todude").is(".todude")) {
+            $(".fa-circle-thin").toggleClass("fa-circle-thin fa-check-circle-o");
+
+             if ($(".todude").is(".todude")) {  //for word cross
 
                   $(".todude").addClass("crossword");
-                } 
+            
+                }
+
+              x = $(".fa-check-circle-o").length; //for counter
+              $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+
           }
 
           else if ($(".buttonstyle").is(".fa-check-circle-o")) {
 
                 $(".fa-check-circle-o").toggleClass("fa-circle-thin fa-check-circle-o");  
 
-                if ($(".todude").is(".crossword")) {
+                if ($(".todude").is(".crossword")) {  //for word cross
 
                   $(".todude").removeClass("crossword");
                 }  
+
           }
+
+         x = $(".fa-circle-thin").length; // for counter
+        $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
           //$(".todude").toggleClass("crossword");     add class didnt work well
         });
 
