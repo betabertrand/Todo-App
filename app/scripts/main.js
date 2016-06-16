@@ -14,6 +14,7 @@
         var itemsleftfinish = ' items left</p>'
 
         var x = 0;
+        var y= 0;
 
         var clearcompleted = '<i class="material-icons">clear</i>' //for clearing all
 
@@ -63,8 +64,15 @@
 
         		alert('Todo input must be >= 3 characters. Not inlcuding spaces.');
         	}
+
     	}	
     	});
+
+        if (x == 0 ) {  //hides clear completed x
+
+            $(".clearcompleted").hide();
+        }
+
         
 
         //if (x > 0 ) {   //for clearing all
@@ -83,6 +91,22 @@
           }
 
           $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+
+          if (x == 0 ) {  //hides clear completed x
+
+            $(".clearcompleted").hide();
+        }
+
+        y = $(".fa-check-circle-o").length;   //clear completed if statement
+          if (y > 0 ) {  
+
+            $(".clearcompleted").show();
+          } 
+          else {
+            $(".clearcompleted").hide();
+          };
+
+
         })
     
   
@@ -103,7 +127,16 @@
 
 
           $(this).parent().parent().next().children().children().toggleClass("crossword"); //crosses out single word
-         
+
+          y = $(".fa-check-circle-o").length; //clear completed if statement
+          if (y > 0 ) {  
+
+            $(".clearcompleted").show();
+          } 
+          else {
+            $(".clearcompleted").hide();
+          };
+ 
         });
 
 
@@ -136,11 +169,21 @@
                   $(".todude").removeClass("crossword");
                 }  
 
-          }
+          };
 
          x = $(".fa-circle-thin").length; // for counter
         $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
           //$(".todude").toggleClass("crossword");     add class didnt work well
+
+          y = $(".fa-check-circle-o").length; //clear completed if statement
+          if (y > 0 ) {  
+
+            $(".clearcompleted").show();
+          } 
+          else {
+            $(".clearcompleted").hide();
+          };
+
         });
 
 
@@ -155,11 +198,18 @@
         });
 
         $("body").on("click", "#active", function() {        //shows unchecked boxes
-          $(".fa-circle-thin").parent().parent().parent().show();      
+          $(".fa-circle-thin").parent().parent().parent().show();
+
+            $(".clearcompleted").hide();      // hides clear completed
         });
 
         $("body").on("click", "#completed", function() {        //hides uncchecked boxes
-          $(".fa-circle-thin").parent().parent().parent().hide();      
+          $(".fa-circle-thin").parent().parent().parent().hide();
+
+          if (x > 0) {
+          $(".clearcompleted").show(); //shows clear completed
+          }
+
         });
 
         $("body").on("click", "#completed", function() {        //shows checked boxes
@@ -168,10 +218,20 @@
 
         $("body").on("click", "#all", function() {        //shows all boxes
           $(".fa-check-circle-o").parent().parent().parent().show();
+          
+          if (x > 0) {
+          $(".clearcompleted").show(); //shows clear completed
+          }
+
         });
 
         $("body").on("click", "#all", function() {        //shows all boxes
           $(".fa-circle-thin").parent().parent().parent().show();
+          
+          if (x > 0) {
+          $(".clearcompleted").show(); //shows clear completed
+          }
+
         });
 
 
@@ -190,6 +250,11 @@
         })
         });
 
+
+        if ($(fa-check-circle-o).length > 0 ) {  //shows clear completed x when todo is added 
+
+            $(".clearcompleted").show();
+            } 
 */
 
 
