@@ -63,7 +63,9 @@
         	else {
 
         		alert('Todo input must be >= 3 characters. Not inlcuding spaces.');
-        	}
+        	}aisdfjaisj
+
+
 
     	}	
     	});
@@ -186,6 +188,30 @@
 
         });
 
+        
+        $('body').on('click','.clearcompleted', function() {  //clears all checked boxes
+
+              $(".fa-check-circle-o").parent().parent().parent().remove();
+
+              y = $(".fa-check-circle-o").length; //clear completed if statement
+              if (y > 0 ) {  
+
+                $(".clearcompleted").show();
+              } 
+              else {
+              $(".clearcompleted").hide();
+          };
+        
+        });
+
+        $("body").on("dblclick",".todude", function(){ //for edit line
+
+          
+          
+        });
+
+
+
 
 
        
@@ -235,6 +261,8 @@
         });
 
 
+
+
 /*
         $("#all").click(function(){
 
@@ -254,7 +282,7 @@
         if ($(fa-check-circle-o).length > 0 ) {  //shows clear completed x when todo is added 
 
             $(".clearcompleted").show();
-            } 
+          } 
 */
 
 
