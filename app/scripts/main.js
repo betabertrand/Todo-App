@@ -57,13 +57,12 @@
 
             x++;
             $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
-
         	}
 
         	else {
 
         		alert('Todo input must be >= 3 characters. Not inlcuding spaces.');
-        	}aisdfjaisj
+        	}
 
 
 
@@ -204,12 +203,11 @@
         
         });
 
-        $("body").on("dblclick",".todude", function(){ //for edit line
-
+        $('todolist').on('dblclick', '.todude', this.edit.bind(this));
           
-          
-        });
-
+      
+        var value;
+        value = $( "div" ).data();
 
 
 
@@ -260,11 +258,20 @@
 
         });
 
-
-
-
 /*
-        $("#all").click(function(){
+
+        $("body").on("dblclick","p", function() {  //for editing inline. doesnt work
+
+
+
+          val($(this).val()).change();
+
+        });
+
+
+
+
+        $("#all").click(function(){  for checking all boxes. didnt work fully. 
 
           $.toggle(
 
@@ -284,9 +291,7 @@
             $(".clearcompleted").show();
           } 
 */
-
-
-       
+        
 
 
 
