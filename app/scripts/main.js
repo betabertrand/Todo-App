@@ -10,7 +10,7 @@
         //for adding todos
         var finish = '</p></div><div class="col-xs-2"> <button type="button" id="buttonexit" class="update buttonsize no-outline"><i class="material-icons">clear</i></button></div></div></div><div class="row"></div></div></div>';
 
-        var itemsleftstart = '<p class="text3 textfont itemsleft">';  //for items counter
+        var itemsleftstart = '<p class="text3 textfont itemsleft">'  //for items counter
         var itemsleftfinish = ' items left</p>'
 
         var x = 0;
@@ -28,6 +28,49 @@
       "'": '&#39;',
       "/": '&#x2F;'
       };
+
+
+      //API TEST AREA
+
+
+
+      var hello = '<p>hello people</p>'
+
+      
+
+      $.get('http://todo.tofani.co/api/v1/todos', function (json) {
+
+        var num = 0;
+        while (json[num].id > 0 ) {
+
+          $('#itemtodo').prepend(start + json[num].body + finish);
+
+          $('#todoinput').val('');
+
+          x++;
+          $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+
+          num++
+
+        }
+
+
+      //console.log('The IP address is: ' + json[0].body);
+      //$(".bottompagetext").html(json[0].id);
+      });
+
+
+  //   $.get('http://localhost:9000/scripts/test.json', function (json) {
+  //   console.log('The IP address is: ' + json[0].source);
+  //    $(".bottompagetext").html(json[0].source);
+   //   });
+       
+      
+
+
+
+      //API TEST AREA
+
 
       function escapeHtml(string) {
       return String(string).replace(/[&<>"'\/]/g, function (s) {
@@ -51,12 +94,16 @@
 
         	if ($.trim(text).length >= 3) {
 
+            $.post('http://todo.tofani.co/api/v1/todos', {"body": text, "completed": false})
+
         		 $('#itemtodo').prepend(start + text + finish);
 
         		$('#todoinput').val('');
 
             x++;
             $(".itemsleft").html(itemsleftstart+x+itemsleftfinish);
+
+            
         	}
 
         	else {
@@ -83,8 +130,19 @@
 
 
 
+
+
         $('#itemtodo').on('click','#buttonexit', function(e){ //user click on remove text
           $(this).parents('div').eq(3).remove();
+
+
+          // attempted json delete
+
+  
+       
+          
+
+          //
 
 
           if ($(this).parent().parent().prev().children().children().is(".fa-circle-thin")) {       
@@ -114,7 +172,8 @@
         $('body').on('click', '.buttonstyle', function() {   //checks boxes
           $(this).toggleClass("fa-circle-thin fa-check-circle-o");
 
-          
+           //$.put('http://todo.tofani.co/api/v1/todos{num}', {"completed": true});   json put attempt
+
           if ($(this).is(".fa-circle-thin")) {       
             x++;  
           }
@@ -203,7 +262,7 @@
         
         });
 
-        $('todolist').on('dblclick', '.todude', this.edit.bind(this));
+        //$('todolist').on('dblclick', '.todude', this.edit.bind(this));   //attempted double click edit
           
       
         var value;
@@ -258,6 +317,11 @@
 
         });
 
+
+
+
+
+         
 /*
 
         $("body").on("dblclick","p", function() {  //for editing inline. doesnt work
@@ -291,10 +355,20 @@
             $(".clearcompleted").show();
           } 
 */
+
+
+          //JSON
+
+          
+
         
+          
+         
+   
 
 
 
 
 
      });
+
