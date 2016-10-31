@@ -55,8 +55,8 @@
         }
 
 
-      //console.log('The IP address is: ' + json[0].body);
-      //$(".bottompagetext").html(json[0].id);
+      console.log('The IP address is: ' + json[0].body);
+      $(".bottompagetext").html(json[0].id);
       });
 
 
